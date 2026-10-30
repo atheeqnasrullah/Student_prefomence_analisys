@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>view_result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='add-student.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+            padding: 40px;
+            margin: 0;
+            background-color: #1a1a2e;
+        }
+
+        .dashboard {
+            background-color: rgba(29, 14, 44, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            width: 550px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #ddd;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .dashboard-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 14px 18px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        th {
+            background-color: #2d2c5e;
+        }
+
+        tr:not(:first-child):hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .feedback {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .logout-btn {
+            display: block;
+            margin: 0 auto 20px auto;
+            padding: 8px 16px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #b02a37;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <form action="/logout" method="get">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+
+        <h2>Welcome, {{ student['name'] }}!</h2>
+        <div class="info">
+            Student ID: {{ student['id'] }} <br>
+            Reg No: {{ student['regno'] }}
+        </div>
+
+
+       
+
+        <h3>Your Marks</h3>
+        <table>
+            <tr><th>Subject</th><th>Marks</th></tr>
+            <tr><td>Tamil</td><td>{{ student['tamil'] }}</td></tr>
+            <tr><td>English</td><td>{{ student['english'] }}</td></tr>
+            <tr><td>Maths</td><td>{{ student['maths'] }}</td></tr>
+            <tr><td>Science</td><td>{{ student['science'] }}</td></tr>
+            <tr><td>Social</td><td>{{ student['social'] }}</td></tr>
+            <tr><td>Total</td><td>{{ student['total'] }}</td></tr>
+            <tr><td>Average</td><td>{{ "%.2f"|format(student['average']) }}</td></tr>
+            <tr><td>Result</td><td>{{ student['result'] }}</td></tr>
+        </table>
+
+        <h3>Performance Feedback</h3>
+        <div class="feedback">
+            {{ feedback }}
+        </div>
+    </div>
+</body>
+</html>

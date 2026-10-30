@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    /* static/style.css */
+
+/* Font and Base Setup */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero-icon {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #c084fc, #a5b4fc);
+  color: white;
+  padding: 20px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #7c3aed;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: #f9f9ff;
+  border-radius: 20px;
+  padding: 30px;
+  width: 300px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card .icon {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #c084fc, #a5b4fc);
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  margin: 10px 0;
+  color: #222;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding-top: 20px;
+}
+
+.feature-card {
+  background: #f9f9ff;
+  border-radius: 20px;
+  padding: 25px;
+  width: 300px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card .icon {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #c084fc, #a5b4fc);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.feature-card h4 {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.action-card {
+  background: #f9f9ff;
+  border-radius: 20px;
+  padding: 20px 30px;
+  width: 350px;
+  margin: 15px auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  color: #333;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.action-card .icon {
+  font-size: 1.8rem;
+  padding: 10px;
+  border-radius: 50%;
+  color: white;
+}
+
+.action-card.register {
+  border-left: 6px solid #2ecc71;
+}
+
+.action-card.register .icon {
+  background: #2ecc71;
+}
+
+.action-card.login {
+  border-left: 6px solid #3498db;
+}
+
+.action-card.login .icon {
+  background: #3498db;
+}
+
+.action-card-content {
+  text-align: left;
+}
+
+.action-card-content h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.action-card-content p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+button, .btn {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #c084fc, #a5b4fc);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin: 10px;
+  text-decoration: none;
+}
+
+button:hover, .btn:hover {
+  background: linear-gradient(135deg, #a5b4fc, #c084fc);
+}
+
+@media (max-width: 768px) {
+  .card-container, .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-card {
+    width: 90%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* Student Portal Buttons */
+.portal-buttons {
+    margin-top: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* space between buttons */
+    flex-wrap: wrap; /* responsive wrap */
+}
+
+.portal-buttons .btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #c084fc, #a5b4fc);
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.portal-buttons .btn:hover {
+    background: linear-gradient(135deg, #a5b4fc, #c084fc);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+/* New Buttons for After Login */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* space between buttons */
+  margin-top: 20px;
+  flex-wrap: wrap; /* responsive wrapping */
+}
+
+.button-container a {
+  display: inline-block;
+  padding: 14px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #c084fc, #a5b4fc);
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.button-container a:hover {
+  background: linear-gradient(135deg, #a5b4fc, #c084fc);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+  <div class="hero-icon">🎓</div>
+  <h1 class="title">Student Portal</h1>
+  <p class="subtitle">Access your academic journey. Register for a new account or login to continue.</p>
+
+
+  <!-- New Buttons for After Login -->
+  <div style="margin-top: 40px; text-align: center;">
+    <div class="button-container">
+  <a href="{{ url_for('student_login') }}">View Result</a>
+<a href="{{ url_for('view_room_page') }}">View Room</a>
+</div>
+  </div>
+
+  <h2 class="title" style="font-size: 1.6rem; margin-top: 60px;">What You'll Get</h2>
+  <div class="features">
+    <div class="feature-card">
+      <div class="icon">📘</div>
+      <h4>Performance Tracking</h4>
+      <p>Monitor your academic progress, grades, and assignments in real-time.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔔</div>
+      <h4>Personalized Feedback</h4>
+      <p>Receive detailed feedback and guidance from your teachers.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>  add two button 

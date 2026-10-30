@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Allocate Rooms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+            color: #333;
+        }
+
+        h2, h3 {
+            color: #6a4dfb; /* Purple color like your image */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto 30px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #6a4dfb; /* Header purple */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        select, input[type="text"] {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 6px 12px;
+            background-color: #6a4dfb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5a3fd6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        ul li.success {
+            color: green;
+        }
+
+        ul li.error {
+            color: red;
+        }
+.back-btn-container {
+    text-align: center; /* centers inline-block elements */
+    margin-bottom: 20px; /* space below */
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #a32ba5;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+    </style>
+</head>
+<body>
+    <h2>Allocate Exam Rooms</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <table>
+        <tr>
+            <th>Student Name</th>
+            <th>Stud ID</th>
+            <th>Block</th>
+            <th>Room Number</th>
+            <th>Action</th>
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <form method="POST" action="{{ url_for('save_room') }}">
+                <td>{{ student['name'] }}</td>
+               <td>{{ student['student_id'] }}</td>
+
+                <td>
+                    <select name="block_name" required>
+                        <option value="">--Select Block--</option>
+                        <option value="A" {% if student['block_name']=='A' %}selected{% endif %}>A</option>
+                        <option value="B" {% if student['block_name']=='B' %}selected{% endif %}>B</option>
+                        <option value="C" {% if student['block_name']=='C' %}selected{% endif %}>C</option>
+                        <option value="D" {% if student['block_name']=='D' %}selected{% endif %}>D</option>
+                    </select>
+                </td>
+
+                <td>
+                    <input type="text" name="room_number" value="{{ student['room_number'] or '' }}" required>
+                </td>
+
+                <td>
+                    <input type="hidden" name="student_id" value="{{ student['id'] }}">
+                    <button type="submit">Allocate</button>
+                </td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Allocated Rooms</h3>
+    <table>
+        <tr>
+            <th>Student Name</th>
+            <th>Student ID</th>
+            <th>Block</th>
+            <th>Room Number</th>
+        </tr>
+        {% for student in students if student['room_number'] %}
+        <tr>
+            <td>{{ student['name'] }}</td>
+            <td>{{ student['id'] }}</td>
+            <td>{{ student['block_name'] }}</td>
+            <td>{{ student['room_number'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="back-btn-container">
+    <a href="/teacher/dashboard" class="btn back-btn">Back to Dashboard</a>
+</div>
+
+</html>
